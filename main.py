@@ -1,3 +1,13 @@
+def generate_world(size=3):
+    world = []
+    for i in range(size):
+        row = []
+        world.append(row)
+        for j in range(size):
+            row.append(" ")
+    return world
+
+
 def show_world(world):
     print(" +--- MAP ---+")
     for row in world:
@@ -5,13 +15,13 @@ def show_world(world):
 
 
 if __name__ == "__main__":
-    world = [["", "", ""], ["", "", ""], ["", "", ""]]
-
     player = "P"
     entity = "E"
-    
+
     print("*" * 50)
     print(" --- TEST ---")
+    size_world = 5
+    world = generate_world(size_world)
 
     show_world(world)
 
