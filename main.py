@@ -52,20 +52,17 @@ def show_movements():
         """)
 
 
-if __name__ == "__main__":
+def main():
     size_world = 5
     world = generate_world(size_world)
     entities = {"player": "P", "entity": "E"}
     entities_coordinates = add_entities_to_world(world, entities)
 
-    print("*" * 50)
-    print(" --- TEST ---")
-
     while True:
         show_world(world)
         show_movements()
-        user_chice = input("Kierunek: ").lower()
-        match user_chice:
+        user_choice = input("Kierunek: ").lower()
+        match user_choice:
             case "1" | "w" | "up":
                 move_player = "up"
             case "2" | "a" | "left":
@@ -78,7 +75,13 @@ if __name__ == "__main__":
                 print("Koniec!")
                 break
             case _:
-                user_chice = None
+                user_choice = None
                 print("Nie prawidlowy wybor! Spróbuj ponownie.")
-        if user_chice:
+        if user_choice:
             move_entity(world, entities_coordinates, entities["player"], move_player)
+
+
+if __name__ == "__main__":
+    print("*" * 50)
+    print(" --- TEST ---")
+    main()
