@@ -1,18 +1,21 @@
-world = [["","",""], ["","",""], ["","",""]]
+def show_world(world):
+    print(" +--- MAP ---+")
+    for row in world:
+        print(row)
 
-print(world[0])
-print(world[1])
-print(world[2])
 
-player = "P"
-entity = "E"
+if __name__ == "__main__":
+    world = [["", "", ""], ["", "", ""], ["", "", ""]]
 
-world[0][1] = player
-world[2][2] = entity
+    player = "P"
+    entity = "E"
+    
+    print("*" * 50)
+    print(" --- TEST ---")
 
-print(" --- TEST ---")
-print("*" * 50)
+    show_world(world)
 
-print(world[0])
-print(world[1])
-print(world[2])
+    world[0][1] = player
+    world[2][2] = entity
+
+    show_world(world)
