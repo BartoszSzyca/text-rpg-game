@@ -57,14 +57,28 @@ if __name__ == "__main__":
     world = generate_world(size_world)
     entities = {"player": "P", "entity": "E"}
     entities_coordinates = add_entities_to_world(world, entities)
-    show_world(world)
 
     print("*" * 50)
     print(" --- TEST ---")
-    show_movements()
-    move_player = input("Kierunek: ").lower()
-    move_entity(world, entities_coordinates, entities["player"], move_player)
 
-    show_world(world)
-
-
+    while True:
+        show_world(world)
+        show_movements()
+        user_chice = input("Kierunek: ").lower()
+        match user_chice:
+            case "1" | "w" | "up":
+                move_player = "up"
+            case "2" | "a" | "left":
+                move_player = "left"
+            case "3" | "s" | "down":
+                move_player = "down"
+            case "4" | "d" | "right":
+                move_player = "right"
+            case "0" | "y" | "yes" | 't' | "tak":
+                print("Koniec!")
+                break
+            case _:
+                user_chice = None
+                print("Nie prawidlowy wybor! Spróbuj ponownie.")
+        if user_chice:
+            move_entity(world, entities_coordinates, entities["player"], move_player)
