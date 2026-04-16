@@ -32,9 +32,9 @@ def add_entities_to_world(world, entities: dict):
 
 def move_entity(world, entits_coordinates, entity, move):
     moves = {'up': [-1, 0], 'left': [0, -1], 'down': [1, 0], 'right': [0, 1]}
-    entite_coordinates = entits_coordinates[entity]
-    world[entite_coordinates[0]][entite_coordinates[1]] = " "
-    new_coordinates = [entite_coordinates[0] + moves[move][0], entite_coordinates[1] + moves[move][1]]
+    entity_coordinates = entits_coordinates[entity]
+    world[entity_coordinates[0]][entity_coordinates[1]] = " "
+    new_coordinates = [entity_coordinates[0] + moves[move][0], entity_coordinates[1] + moves[move][1]]
     entits_coordinates[entity] = new_coordinates
     print(entity, new_coordinates)
     world[new_coordinates[0]][new_coordinates[1]] = entity
