@@ -40,6 +40,18 @@ def move_entity(world, entits_coordinates, entity, move):
     world[new_coordinates[0]][new_coordinates[1]] = entity
 
 
+def show_movements():
+    print("""
+        +--- MOVE: ---+
+        |1. UP    (W) |
+        |2. LEFT  (A) |
+        |3. DOWN  (S) |
+        |4. RIGHT (D) |
+        |0. EXIT  (Y) |
+        +-------------+
+        """)
+
+
 if __name__ == "__main__":
     size_world = 5
     world = generate_world(size_world)
@@ -49,7 +61,10 @@ if __name__ == "__main__":
 
     print("*" * 50)
     print(" --- TEST ---")
+    show_movements()
     move_player = input("Kierunek: ").lower()
     move_entity(world, entities_coordinates, entities["player"], move_player)
 
     show_world(world)
+
+
