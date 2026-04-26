@@ -24,11 +24,15 @@ def add_entities_to_world(world, entities: dict):
     return entities_coordinates
 
 
-def move_entity(world, entitis_coordinates, entity, move):
+def move_entity(world, entities_coordinates, entity, move):
     moves = {'up': [-1, 0], 'left': [0, -1], 'down': [1, 0], 'right': [0, 1]}
-    entity_coordinates = entitis_coordinates[entity]
-    world[entity_coordinates[0]][entity_coordinates[1]] = " "
+    entity_coordinates = entities_coordinates[entity]
     new_coordinates = [entity_coordinates[0] + moves[move][0], entity_coordinates[1] + moves[move][1]]
-    entitis_coordinates[entity] = new_coordinates
-    print(entity, new_coordinates)
-    world[new_coordinates[0]][new_coordinates[1]] = entity
+    if _can_move(len(world), new_coordinates):
+        world[entity_coordinates[0]][entity_coordinates[1]] = " "
+        entities_coordinates[entity] = new_coordinates
+        world[new_coordinates[0]][new_coordinates[1]] = entity
+
+
+def _can_move(size, new_entity_coordinates):
+    return 0 <= new_entity_coordinates[0] < size and 0 <= new_entity_coordinates[1] < size
