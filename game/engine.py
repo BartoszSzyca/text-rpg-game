@@ -16,19 +16,28 @@ class World:
             position_y = random.randint(0, self.size - 1)
             if self._is_empty(position_x, position_y):
                 self.world[position_y][position_x] = entity
-                return [position_y, position_x]
+                return position_x, position_y
 
     def _is_empty(self, position_x, position_y):
         return self.world[position_y][position_x] == " "
 
 
-def move_entity(world, entities_coordinates, entity, move):
+class Entity:
+    def __init__(self, name):
+        self.name = name
+        self.position_x = None
+        self.position_y = None
+
+    def __repr__(self):
+        return f"'{self.name[0].upper()}'"
+
+
+def move_entity(world, entity, move):
     moves = {'up': [-1, 0], 'left': [0, -1], 'down': [1, 0], 'right': [0, 1]}
-    entity_coordinates = entities_coordinates[entity]
-    new_coordinates = [entity_coordinates[0] + moves[move][0], entity_coordinates[1] + moves[move][1]]
+    new_coordinates = [entity.position_y + moves[move][0], entity.position_x + moves[move][1]]
     if _can_move(len(world.world), new_coordinates):
-        world.world[entity_coordinates[0]][entity_coordinates[1]] = " "
-        entities_coordinates[entity] = new_coordinates
+        world.world[entity.position_y][entity.position_x] = " "
+        entity.position_y, entity.position_x = new_coordinates
         world.world[new_coordinates[0]][new_coordinates[1]] = entity
 
 

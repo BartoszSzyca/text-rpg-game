@@ -2,6 +2,7 @@
 .gitignore
 copy_code.py
 code.txt
+test.py
 
 __pycache__/
 *.py[codz]

@@ -1,13 +1,15 @@
-from engine import World, move_entity
+from engine import World, Entity, move_entity
 from ui import show_movements, show_world
 
 
 def main():
     size_world = 5
     w = World(size_world)
-    player = w.add_entity_to_world("P")
-    goblin = w.add_entity_to_world("G")
-    entities_coordinates = {"P": player, "G": goblin}
+
+    player = Entity("Aragorn")
+    player.position_x, player.position_y = w.add_entity_to_world(player)
+    goblin = Entity("Goblin")
+    goblin.position_x, goblin.position_y = w.add_entity_to_world(goblin)
 
     while True:
         show_world(w.world)
@@ -29,7 +31,7 @@ def main():
                 user_choice = None
                 print("Nie prawidlowy wybor! Spróbuj ponownie.")
         if user_choice:
-            move_entity(w, entities_coordinates, "P", move_player)
+            move_entity(w, player, move_player)
 
 
 if __name__ == "__main__":
