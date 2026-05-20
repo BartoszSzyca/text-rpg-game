@@ -13,4 +13,6 @@ def show_movements():
 def show_world(world):
     print(" +--- MAP ---+")
     for row in world:
-        print(row)
+        print()
+        for d in row:
+            print(list(d.values()), end="")

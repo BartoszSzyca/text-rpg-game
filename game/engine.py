@@ -8,19 +8,19 @@ class World:
 
     @staticmethod
     def generate_world(size=3):
-        return [[" "] * size for _ in range(size)]
+        return [[{} for _ in range(size)] for _ in range(size)]
 
     def add_entity_to_world(self, entity):
         while True:
             position_x = random.randint(0, self.size - 1)
             position_y = random.randint(0, self.size - 1)
             if self._is_empty(position_x, position_y):
-                self.world[position_y][position_x] = entity
+                self.world[position_y][position_x][entity.name] = entity
                 entity.position_x, entity.position_y = position_x, position_y
                 break
 
     def _is_empty(self, position_x, position_y):
-        return self.world[position_y][position_x] == " "
+        return self.world[position_y][position_x] == {}
 
 
 class Entity:
@@ -36,10 +36,9 @@ class Entity:
         moves = {'up': [-1, 0], 'left': [0, -1], 'down': [1, 0], 'right': [0, 1]}
         new_coordinates = [self.position_y + moves[move][0], self.position_x + moves[move][1]]
         if self._can_move(len(world.world), new_coordinates):
-            world.world[self.position_y][self.position_x] = " "
+            world.world[self.position_y][self.position_x].pop(self.name)
             self.position_y, self.position_x = new_coordinates
-            world.world[self.position_y][self.position_x] = self
-
+            world.world[self.position_y][self.position_x][self.name] = self
 
     def _can_move(self, size, new_entity_coordinates):
         return 0 <= new_entity_coordinates[0] < size and 0 <= new_entity_coordinates[1] < size
