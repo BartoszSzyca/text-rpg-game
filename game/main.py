@@ -1,4 +1,4 @@
-from engine import World, Entity
+from engine import World, Entity, spawn_entity
 from ui import show_movements, show_world
 
 
@@ -7,9 +7,9 @@ def main():
     w = World(size_world)
 
     player = Entity("Aragorn")
-    w.add_entity_to_world(player)
+    spawn_entity(w, player)
     goblin = Entity("Goblin")
-    w.add_entity_to_world(goblin)
+    spawn_entity(w, goblin)
 
     while True:
         show_world(w.world)
