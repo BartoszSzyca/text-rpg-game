@@ -1,5 +1,5 @@
 from engine import World, Entity, spawn_entity
-from ui import show_movements, show_world
+from ui import show_movements, show_world, show_menu
 
 
 def main():
@@ -25,8 +25,19 @@ def main():
             case "4" | "d" | "right":
                 move_player = "right"
             case "0" | "y" | "yes" | 't' | "tak":
-                print("Koniec!")
-                break
+                show_menu()
+                user_choice = input("Wybierz: ").lower()
+                match user_choice:
+                    case "1" | "c":
+                        print("Poworót do gry")
+                    case "2" | "s":
+                        print("Brak możliwości zapisu")
+                    case "3" | "l":
+                        print("Brak możliwości wczytania gry.")
+                    case "0" | "y" | "yes" | 't' | "tak":
+                        print("Koniec!")
+                        break
+                user_choice = None
             case _:
                 user_choice = None
                 print("Nie prawidlowy wybor! Spróbuj ponownie.")
